@@ -5,4 +5,8 @@
     <p>End Date is <%= trip.endDate %></p>
     <p>Destination is <%= trip.destination %></p>
 
+    <form action="/trips/<%= trip._id %>?_method=DELETE" method="POST">
+        <button class="btn btn-danger">Delete the Trip</button>
+    </form>
+    
 <%- include("../other/footer") %>

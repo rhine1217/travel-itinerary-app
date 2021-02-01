@@ -5,10 +5,6 @@ const userSchema = new Schema({
   email: String,
   avatarURL: String,
   googleId: String,
-  trips: [{ 
-    type: Schema.Types.ObjectId,
-    ref: 'Trip'
- }]
 }, {
   timestamps: true
 });

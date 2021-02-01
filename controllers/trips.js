@@ -18,6 +18,9 @@ function index(req, res) {
         const context = {
           trips: userTrips,
         }
+
+
+        console.log(userTrips[0])
         
         res.render('trips/index', context)
       })
@@ -57,7 +60,7 @@ function showTrip(req, res) {
         const context = {
             trip: foundTrip
         }
-        
+
         res.render('trips/show', context)
     } )
 }
@@ -69,8 +72,12 @@ function updateTrip(req, res) {
 }
 
 function delTrip(req, res) {
-    // find the CreatedBy User. remove from their trips array 
-    // remove this trip. 
-    return
+    
+    Trips.findByIdAndDelete(req.params.id, (err, deletedTrip) => {
+        if (err) return console.log(err)
+
+        res.redirect('/trips')
+    })
+
 }
 

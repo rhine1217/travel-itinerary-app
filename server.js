@@ -4,8 +4,9 @@ const port = 3000;
 const session = require('express-session');
 const passport = require('passport');
 const methodOverride = require('method-override')
+const MongoStore = require('connect-mongo')(session)
 
-// We'll need to load the env vars
+// load the env vars
 require('dotenv').config()
 
 // create the Express app
@@ -26,9 +27,11 @@ app.use(methodOverride('_method'));
 
 // Add session middleware here
 app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true
+    store: new MongoStore({ url: process.env.DATABASE_URL}),
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 * 2 } // 2 weeks 
 }));
 
 // Add passport middleware here
