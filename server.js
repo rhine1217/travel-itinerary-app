@@ -22,11 +22,11 @@ app.use(express.static('public'));
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use( methodOverride('_method') );
+app.use(methodOverride('_method'));
 
 // Add session middleware here
 app.use(session({
-  secret: 'bm9T5PShhYP9axr9',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }));
@@ -37,14 +37,11 @@ app.use(passport.session());
 
 // require and use our routes
 
-/*
 const indexRoutes = require('./routes/index');
-const studentsRoutes = require('./routes/students');
+const tripRoutes = require('./routes/trip');
 
 app.use('/', indexRoutes);
-app.use('/', studentsRoutes);
-
-*/
+app.use('/trips', tripRoutes);
 
 app.listen(port, () => {
   console.log(`Express is listening on port:${port}`);

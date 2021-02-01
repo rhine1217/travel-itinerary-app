@@ -1,0 +1,14 @@
+<%- include("../other/header") %>
+<%- include("../other/user-nav") %>
+
+<% trips.forEach(function(trip) { %>
+
+    <p>Start Date is <%= trip.startDate %></p>
+    <p>End Date is <%= trip.endDate %></p>
+    <p>Destination is <%= trip.destination %></p>
+
+<% }) %>
+
+<a href="/trips/new">Create a New Trip</a>
+
+<%- include("../other/footer") %>

@@ -5,8 +5,7 @@ const tripSchema = new Schema({
     startDate: Date,
     endDate: Date,
     destination: String,
-    name: String,
-    stops: [],  // [ { place_id (string) : date }]
+    stops: Array,  // [ { place_id (string) : date }]
     createdBy: {
       type: Schema.Types.ObjectId,
       ref: 'User'

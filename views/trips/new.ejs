@@ -1,0 +1,29 @@
+<%- include("../other/header") %>
+<%- include("../other/user-nav") %>
+
+<h1>Plan a new trip</h1>
+
+<form action="/trips/add" method="POST">
+
+    <div class="form-group">
+        <label for="trip-destination">Destination</label>
+        <input type="text" name="" id="trip-destination" required>
+    </div>
+
+    <div class="form-group">
+        <label for="trip-start">Start Date</label>
+        <input type="date" name="startDate" id="trip-start" required>
+    </div>
+
+    <div class="form-group">
+        <label for="trip-end">End Date</label>
+        <input type="date" name="endDate" id="trip-end" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+
+
+<%- include("../other/footer") %>

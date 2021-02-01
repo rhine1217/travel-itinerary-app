@@ -1,20 +1,18 @@
-// const router = require('express').Router();
-// const studentsCtrl = require('../controllers/students');
+const router = require('express').Router();
+const tripCtrl = require('../controllers/trips');
 
-// // GET /students
-// router.get('/students', isLoggedIn, studentsCtrl.index);
+// /trips
 
-// // POST /facts
-// // We will already have access to the logged in student on
-// // the server, therefore do not use: /students/:id/facts
-// router.post('/facts', isLoggedIn, studentsCtrl.addFact);
+router.get('/', isLoggedIn, tripCtrl.index); // show all trips
+router.get('/new', isLoggedIn, tripCtrl.newTrip) // render the page for 'plan a new trip'
+router.post('/add', isLoggedIn, tripCtrl.addTrip) // add a new trip to the database and redirect to the trip details page
+router.get('/:id', isLoggedIn, tripCtrl.showTrip) // show the trip details (with the trip:id)
+router.post('/:id', isLoggedIn, tripCtrl.updateTrip) // update the trip details in the database 
+router.delete('/:id', isLoggedIn, tripCtrl.delTrip) // delete the trip in the database
 
-// // DELETE /facts/:id
-// router.delete('/facts/:id', isLoggedIn, studentsCtrl.delFact);
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) return next();
+    res.redirect('/auth/google');
+}
 
-// function isLoggedIn(req, res, next) {
-//     if (req.isAuthenticated()) return next();
-//     res.redirect('/auth/google');
-// }
-
-// module.exports = router;
+module.exports = router;
