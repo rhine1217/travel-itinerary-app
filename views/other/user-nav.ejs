@@ -1,15 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">
-        <img src="/img/logo_200x200.png" width="30" height="30" alt="logo">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" href="/">Your Trips</a>
-        <a class="nav-link" href="/">Create a Trip</a>
-        <a class="nav-link" href="/">Saved Places</a>
+  <div class="col-12 d-flex justify-content-between">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <svg id="logo-icon" class="d-inline-block" xmlns="http://www.w3.org/2000/svg" class="bi bi-calendar2-week" viewBox="0 0 16 16">
+            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+            <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4zM11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+        </svg><span id="logo-name">Wanderer</span>
+      </a>
+      <div class="navbar-nav align-items-center">
+
+          <a class="nav-link <%= currLink === 'yourTrips' ? 'active' : '' %>" href="/trips">Your Trips</a>
+          <a class="nav-link <%= currLink === 'newTrip' ? 'active' : '' %>" href="/trips/new">Create a Trip</a>
+          <a class="nav-link <%= currLink === 'savedPlaces' ? 'active' : '' %>" href="/">Saved Places</a>
+
+          <div class="profile"><img class="img-fluid" src="<%= user.avatarURL %>" alt="profile"></div>
       </div>
-    </div>
+  </div>
 </nav>

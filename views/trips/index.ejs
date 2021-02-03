@@ -1,16 +1,52 @@
 <%- include("../other/header") %>
 <%- include("../other/user-nav") %>
+<%- include("../other/functions.ejs") %>
 
-<% trips.forEach(function(trip) { %>
+<div class="container" id="trip-cards">
 
-    <p>Start Date is <%= trip.startDate %></p>
-    <p>End Date is <%= trip.endDate %></p>
-    <p>Destination is <%= trip.destination %></p>
-    <a href="/trips/<%= trip._id %>">View Details</a>
-    <hr>
+    <div class="row">
 
-<% }) %>
+        <% trips.forEach(function(trip) { %>
 
-<a href="/trips/new">Create a New Trip</a>
+        <div class="col-3">
+
+            <a href="/trips/<%= trip._id %>">
+
+            <div class="trip-card">
+
+                <img class="trip-card-img" src="<%= trip.headerPic %>" alt="trip header">
+
+                <div class="trip-card-text">
+
+                    <h2 class="trip-card-destination"><%= trip.destination %></h2>
+
+                    <p class="trip-card-dates">
+
+                        <%= formatDate(trip.startDate) %> - <%= formatDate(trip.endDate) %> 
+
+                    </p>
+
+                </div>
+
+            </div>
+            </a>
+            
+        </div>
+        <% }) %>
+
+        <div class="col-3">
+            <a href="/trips/new">
+            <div class="trip-card">
+                <div class="trip-card-text-add">
+
+                    <h3><i class="fas fa-plus"></i> Plan a New Trip</h2>
+                </div>
+            </div>
+            </a>
+        </div>
+
+    </div>
+
+</div>
 
 <%- include("../other/footer") %>

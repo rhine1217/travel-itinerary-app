@@ -1,10 +1,10 @@
 const express = require('express');
-const morgan = require('morgan');
 const port = 3000;
 const session = require('express-session');
 const passport = require('passport');
-const methodOverride = require('method-override')
 const MongoStore = require('connect-mongo')(session)
+const morgan = require('morgan');
+const methodOverride = require('method-override')
 
 // load the env vars
 require('dotenv').config()

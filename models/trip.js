@@ -9,7 +9,8 @@ const tripSchema = new Schema({
     createdBy: {
       type: Schema.Types.ObjectId,
       ref: 'User'
-    }
+    },
+    headerPic: String, // url to an Unsplash image
   }, {
     timestamps: true
   });

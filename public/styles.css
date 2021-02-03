@@ -5,6 +5,9 @@
     --primaryColor2: #d94500;
 }
 
+
+/* Headers */ 
+
 #logo-icon {
     fill: var(--primaryColor);
     height: 2rem;
@@ -23,6 +26,25 @@
     width: 1rem;
 }
 
+.profile {
+    height: 2rem;
+    width: 2rem;
+    margin-left: 1.2rem;
+    border-radius:50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile img {
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* Landing Page */
 #landing-page {
     position: relative;
     padding: 10%;
@@ -69,4 +91,74 @@
 .btn-primary:hover {
     background-color: var(--primaryColor2);
     border-color: var(--primaryColor2);
+}
+
+/* Trips Index */ 
+
+#trip-cards {
+    margin-top: 5%;
+}
+
+.trip-card {
+    border-radius: .4rem;
+    width: 100%;
+    padding-top: 125%;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid grey;
+}
+
+.trip-card-img, .trip-card-text, .trip-card-text-add {
+    position: absolute; 
+    /* top:0;  */
+    left:0; 
+    right:0; 
+    bottom:0;
+}
+
+.trip-card-img {
+    object-fit: cover;
+    height: 100%;
+    z-index: -1;
+}
+
+.trip-card-text, .trip-card-text-add {
+    text-align: center;
+}
+
+.trip-card-destination {
+    font-weight: bold;
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 0.2rem;
+}
+
+.trip-card-dates {
+    font-weight: bold;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.trip-link {
+    z-index: 1;
+}
+
+/* Trip Details Page */
+
+#trip-show {
+    padding: 2%;
+}
+
+#sidebar {
+    text-align: center;
+}
+
+.sidebar-ico {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.trip-date {
+    text-align: center;
+    margin-top: 0.5rem;
 }

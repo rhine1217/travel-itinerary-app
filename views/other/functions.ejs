@@ -1,0 +1,17 @@
+<%
+formatDate = function(DateObj) {
+    const options = {
+        month: 'short',
+        day: '2-digit',
+        timeZone: 'UTC',
+    }
+
+    const dateStr = DateObj.toLocaleDateString('en-US', options)
+    const formattedDate = {
+        month: dateStr.slice(0,3).toUpperCase(),
+        day: dateStr.slice(-2)
+    }
+
+    return formattedDate
+}
+%>

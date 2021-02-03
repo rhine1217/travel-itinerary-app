@@ -1,12 +1,42 @@
 <%- include("../other/header") %>
-<%- include("../other/user-nav") %>
+<%- include("../other/trip-nav") %>
+<%- include("../other/functions") %>
 
-    <p>Start Date is <%= trip.startDate %></p>
-    <p>End Date is <%= trip.endDate %></p>
-    <p>Destination is <%= trip.destination %></p>
+<div class="row" id="trip-show">
 
-    <form action="/trips/<%= trip._id %>?_method=DELETE" method="POST">
-        <button class="btn btn-danger">Delete the Trip</button>
-    </form>
-    
+    <div class="col-1" id="sidebar">
+        <i class="bi bi-geo-fill sidebar-ico"></i>
+        <br>
+        <i class="bi bi-calendar2-plus sidebar-ico"></i>
+        <br>
+        <div class="list-group" id="sidebar-dates">
+        <% for (let i = 0; i < dateRange.length; i++) { %>
+            <% currDate = dateRange[i] %>
+            <div class="trip-date">
+                <a class="list-group-item list-group-item-action" href="#list-item-<%= i+1 %>"><span> <%= formatDate(currDate).month %></span><br><span> <%= formatDate(currDate).day %></span></a>
+            </div>
+        <% } %>
+        </div>
+    </div>
+
+    <div class="col-8">
+
+        <div style="position:relative; height: 500px; overflow-y: scroll;" data-spy="scroll" data-target="#sidebar-dates" data-offset="0" class="scrollspy-example">
+            <h4 id="list-item-1">Item 1</h4>
+            <p>Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
+            <h4 id="list-item-2">Item 2</h4>
+            <p>Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
+            <h4 id="list-item-3">Item 3</h4>
+            <p>Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
+            <h4 id="list-item-4">Item 4</h4>
+            <p>Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
+        </div>
+    </div>
+
+</div>
+
+<form action="/trips/<%= trip._id %>?_method=DELETE" method="POST">
+    <button class="btn btn-danger">Delete the Trip</button>
+</form>
+
 <%- include("../other/footer") %>
