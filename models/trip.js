@@ -11,6 +11,7 @@ const tripSchema = new Schema({
       ref: 'User'
     },
     headerPic: String, // url to an Unsplash image
+    latLng: Array, // [Lat, Lng]
   }, {
     timestamps: true
   });

@@ -1,10 +1,10 @@
 const Trips = require('../models/trip')
 
-const nodeFetch = require('node-fetch')
+const fetch = require('node-fetch')
 const unsplashJs = require('unsplash-js')
 const unsplash = unsplashJs.createApi({
     accessKey: process.env.UNSPLASH_API_KEY,
-    fetch: nodeFetch
+    fetch,
   });
 
 module.exports = {
@@ -44,40 +44,25 @@ function newTrip(req, res) {
 }
 
 function addTrip(req, res) {
-    
-    const photoApiParams = {
-        query: req.body.destination,
-        per_page: 1,
-        orientation: 'landscape'
+
+    const newTripInfo = {
+        startDate: req.body.startDate,
+        endDate: req.body.endDate,
+        destination: req.body.destination,
+        createdBy: req.user.id,
+        stops: [],
     }
 
-    unsplash.search.getPhotos( photoApiParams ).then(result => {
-        if (result.errors) {
-
-            console.log('error occurred: ', result.errors[0]);
-
-        } else {
-
-            console.log(result.response)
-
-            const newTripInfo = {
-                startDate: req.body.startDate,
-                endDate: req.body.endDate,
-                destination: req.body.destination,
-                createdBy: req.user.id,
-                stops: [],
-                headerPic:result.response.results[0].urls.regular
-            }
-        
-            Trips.create(newTripInfo, (err, newTrip) => {
-                if (err) return console.log(err)
-                res.redirect(`/trips/${newTrip._id}`)
-            })
-
-        }
+    Trips.create(newTripInfo, (err, newTrip) => {
+        if (err) return console.log(err)
+        getHeaderPic(newTrip)
+        getLatLng(newTrip)
+        res.redirect(`/trips/${newTrip._id}`)
     })
 
+
 }
+
 
 function showTrip(req, res) {
 
@@ -119,4 +104,45 @@ function delTrip(req, res) {
         res.redirect('/trips')
     })
 
+}
+
+/* Helper Functions */
+
+function getLatLng(newTrip) {
+    
+    const geocodeApiUrl = `http://www.mapquestapi.com/geocoding/v1/address?key=${process.env.MAPQUEST_API_KEY}&location=${newTrip.destination}`
+
+    fetch(geocodeApiUrl)
+    .then(res => res.json())
+    .then(res => {
+        newTrip.latLng = [res.results[0].locations[0].latLng.lat, res.results[0].locations[0].latLng.lng]
+        newTrip.save(function(err) { 
+            if (err) return console.log(err)
+        })
+        })
+
+}
+
+function getHeaderPic(newTrip) {
+
+    const photoApiParams = {
+        query: newTrip.destination,
+        per_page: 1,
+        orientation: 'landscape'
+    }
+
+    unsplash.search.getPhotos( photoApiParams ).then(result => {
+        if (result.errors) {
+
+            console.log('error occurred: ', result.errors[0]);
+
+        } else {
+
+            newTrip.headerPic  = result.response.results[0].urls.regular
+            newTrip.save(function (err) {
+                if (err) return console.log(err)
+            })
+
+        }
+    })
 }

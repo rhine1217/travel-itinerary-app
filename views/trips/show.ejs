@@ -19,9 +19,8 @@
         </div>
     </div>
 
-    <div class="col-8">
+    <div class="col-7 scrollspy-example" data-spy="scroll" data-target="#sidebar-dates" data-offset="0" class="" id="itin-details">
 
-        <div style="position:relative; height: 500px; overflow-y: scroll;" data-spy="scroll" data-target="#sidebar-dates" data-offset="0" class="scrollspy-example">
             <h4 id="list-item-1">Item 1</h4>
             <p>Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
             <h4 id="list-item-2">Item 2</h4>
@@ -30,13 +29,22 @@
             <p>Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
             <h4 id="list-item-4">Item 4</h4>
             <p>Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
-        </div>
     </div>
+
+    <div class="col-4" id="places-bar">
+        <a href="places/add">Add a Place</a>
+    </div>
+    <p><%= trip.latLng[0] %></p>
+<p><%= trip.latLng[1] %></p>
 
 </div>
 
 <form action="/trips/<%= trip._id %>?_method=DELETE" method="POST">
     <button class="btn btn-danger">Delete the Trip</button>
 </form>
+
+
+
+
 
 <%- include("../other/footer") %>
