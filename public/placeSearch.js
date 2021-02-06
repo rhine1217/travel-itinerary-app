@@ -10,8 +10,6 @@ $('#place-search').on('click', e => {
         placeType: queryStr[1].split('=')[1],
     }
 
-    console.log(dataToSend) // to remove
-
     fetch('/places/search', {
         method: 'POST',
         headers: { 
@@ -29,8 +27,7 @@ $('#place-search').on('click', e => {
             cacheData[key] = result
 
         })
-        
-        console.log(data) // to remove
+
         renderSearchResults(data)
     })
     .catch(error => {
@@ -58,7 +55,6 @@ $('#select-all').on('click', e => {
 })
 
 $('#deselect-all').on('click', e => {
-    console.log(e.target)
     $result = $('.place-search-result')
     for (let i = 0; i < $result.length; i++) {
         $checkbox = $result.eq(i).find('.checkbox')
@@ -133,7 +129,6 @@ function renderSearchResults(data) {
         $('#search-results').append(renderStr)
         $(`#${result.place_id}`).on('click', e => {
             e.preventDefault();
-            console.log(e.target)
             $checkbox = $(e.target.closest('.checkbox'))
             toggleChecked($checkbox)
         })
