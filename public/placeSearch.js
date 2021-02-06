@@ -1,3 +1,5 @@
+const cacheData = {}
+
 $('#place-search').on('click', e => {
     e.preventDefault();
     const tripId = window.location.href.split('/').slice(-1)[0] 
@@ -19,6 +21,15 @@ $('#place-search').on('click', e => {
     })
     .then(response => response.json())
     .then(data => {
+        data.places.forEach(result => {
+            
+            result.placeUrl = `https://www.google.com/maps/search/?api=1&query=${result.geometry.location.lat},${result.geometry.location.lng}&query_place_id=${result.place_id}`
+            
+            const key = result.place_id;
+            cacheData[key] = result
+
+        })
+        
         console.log(data) // to remove
         renderSearchResults(data)
     })
@@ -33,6 +44,63 @@ $('.checkbox').on('click', e => {
     toggleChecked($checkbox)
 })
 
+$('#select-all').on('click', e => {
+    $result = $('.place-search-result')
+    for (let i = 0; i < $result.length; i++) {
+        $checkbox = $result.eq(i).find('.checkbox')
+        $checkbox.removeClass('place-not-checked')
+        $checkbox.addClass('place-checked')
+        $checkbox.empty()
+        $checkbox.append('<i class="bi bi-check-circle"></i>')
+    }
+    $(e.target).addClass('d-none')
+    $('#deselect-all').removeClass('d-none')
+})
+
+$('#deselect-all').on('click', e => {
+    console.log(e.target)
+    $result = $('.place-search-result')
+    for (let i = 0; i < $result.length; i++) {
+        $checkbox = $result.eq(i).find('.checkbox')
+        $checkbox.addClass('place-not-checked')
+        $checkbox.removeClass('place-checked')
+        $checkbox.empty()
+        $checkbox.append('<i class="bi bi-circle"></i>')
+    }
+    $(e.target).addClass('d-none')
+    $('#select-all').removeClass('d-none')
+})
+
+$('#save-selections').on('click', e => {
+    const dataToSend = {}
+    $places = $('.place-checked')
+    for (let i = 0; i < $places.length; i++) {
+        $result = $places.eq(i).closest('.place-search-result')
+        dataId = $result.attr('id')
+        dataToSend[dataId] = cacheData[dataId]
+    }
+
+    const tripId = window.location.href.split('/').slice(-1)[0] 
+    dataToSend.tripId = tripId
+
+    fetch('/places/add', {
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataToSend),
+    })
+    .then(response => {
+        console.log(response)
+        if (response.redirected) {
+            window.location.href = response.url
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error)
+    })
+})
+
 /* Helper Functions */
 
 function renderSearchResults(data) {
@@ -45,8 +113,6 @@ function renderSearchResults(data) {
             typeStr += `<span class="badge badge-pill badge-primary">${type}</span>&nbsp;`
         })
 
-        result.placeUrl = `https://www.google.com/maps/search/?api=1&query=${result.geometry.location.lat},${result.geometry.location.lng}&query_place_id=${result.place_id}`
-
         const renderStr = `
 
         <div class="row place-search-result" id="${result.place_id}">
@@ -57,9 +123,9 @@ function renderSearchResults(data) {
                 <i class="bi bi-geo-alt-fill place-icon"></i>
             </div>
             <div class="col-6">
-                <a href="${result.placeUrl}" target="_blank" class="place-link"><div>${result.name}</div></a>
+                <a href="${result.placeUrl}" target="_blank" class="place-link"><div class="place-name">${result.name}</div></a>
                 <div class="place-types">${typeStr}</div>
-                <div>${result.formatted_address}</div>
+                <div class="place-address">${result.formatted_address}</div>
             </div>
         </div>
         `
@@ -67,7 +133,8 @@ function renderSearchResults(data) {
         $('#search-results').append(renderStr)
         $(`#${result.place_id}`).on('click', e => {
             e.preventDefault();
-            $checkbox = $(e.target.find('.checkbox'))
+            console.log(e.target)
+            $checkbox = $(e.target.closest('.checkbox'))
             toggleChecked($checkbox)
         })
 

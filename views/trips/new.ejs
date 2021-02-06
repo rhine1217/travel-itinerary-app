@@ -1,29 +1,39 @@
 <%- include("../other/header") %>
 <%- include("../other/user-nav") %>
 
-<h1>Plan a new trip</h1>
+<div id="add-new-trip">
+    <div class="row">
+        <div class="col-6">
 
-<form action="/trips/add" method="POST">
-
-    <div class="form-group">
-        <label for="trip-destination">Destination</label>
-        <input type="text" name="destination" id="trip-destination" required>
-    </div>
-
-    <div class="form-group">
+            <h1>Plan a new trip</h1>
+            
+            <form action="/trips/add" method="POST">
+                
+                <div class="form-group">
+                    <label for="trip-destination">Destination</label>
+                    <input type="text" class="form-control" name="destination" id="trip-destination" required>
+                </div>
+                
+                <div class="form-group">
         <label for="trip-start">Start Date</label>
-        <input type="date" name="startDate" id="trip-start" required>
+        <input type="date" class="form-control" name="startDate" id="trip-start" required>
     </div>
-
+    
     <div class="form-group">
         <label for="trip-end">End Date</label>
-        <input type="date" name="endDate" id="trip-end" required>
+        <input type="date" class="form-control" name="endDate" id="trip-end" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="trip-range">Date Range</label>
+        <input type="text" class="form-control" name="daterange" placeholder="Start Date - End Date" value="" required> 
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+</div>
+</div>
 
-
-
+</div>
 
 
 <%- include("../other/footer") %>

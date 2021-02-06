@@ -1,5 +1,5 @@
 const Trips = require('../models/trip')
-
+const Places = require('../models/place')
 const fetch = require('node-fetch')
 const unsplashJs = require('unsplash-js')
 const unsplash = unsplashJs.createApi({
@@ -80,14 +80,36 @@ function showTrip(req, res) {
         }
 
         dateRange.push(foundTrip.endDate)
+        
+        const stopsPromises = showStops(foundTrip);
+    
+        Promise.all(stopsPromises).then(stopsToRender => {
+            console.log(stopsToRender);
 
-        const context = {
-            trip: foundTrip,
-            user: req.user,
-            dateRange,
-        }
+            const unplannedStops = [];
+            const plannedStops = [];
 
-        res.render('trips/show', context)
+            stopsToRender.forEach(stop => {
+
+                if (stop.type === 'unplanned') {
+                    unplannedStops.push(stop)
+                } else {
+                    plannedStops.push(stop)
+                }
+            })
+    
+            const context = {
+                trip: foundTrip,
+                user: req.user,
+                dateRange,
+                unplannedStops,
+                plannedStops,
+                currLink: 'yourTrips',
+            }
+
+            res.render('trips/show', context)
+        })
+        
     } )
 }
 
@@ -153,4 +175,22 @@ function getHeaderPic(newTrip) {
 
         }
     })
+}
+
+function showStops(foundTrip) {
+    const promises = [];
+
+    foundTrip.stops.forEach( stop => {
+        promises.push(Places.findById(stop.placeId)
+            .then(foundPlace => {
+                return {
+                    stopPlace: foundPlace,
+                    stopDate: stop.date,
+                    type: stop.date.getTime() === new Date(0).getTime() ? 'unplanned' : 'planned'
+                }
+            })
+        );
+    });
+
+    return promises;
 }

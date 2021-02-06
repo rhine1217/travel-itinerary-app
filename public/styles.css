@@ -105,12 +105,17 @@
     padding-top: 125%;
     position: relative;
     overflow: hidden;
-    border: 1px solid grey;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.trip-card:hover {
+    background-color: rgba(0,0,0,0.4);
+    box-shadow: 0 4x 8px 0 rgba(0,0,0,0.6);
 }
 
 .trip-card-img, .trip-card-text, .trip-card-text-add {
     position: absolute; 
-    /* top:0;  */
     left:0; 
     right:0; 
     bottom:0;
@@ -131,6 +136,7 @@
     color: white;
     font-size: 2rem;
     margin-bottom: 0.2rem;
+    text-transform: capitalize;
 }
 
 .trip-card-dates {
@@ -141,6 +147,12 @@
 
 .trip-link {
     z-index: 1;
+}
+
+/* Add New Trip */
+
+#add-new-trip {
+    padding: 2%;
 }
 
 /* Trip Details Page */
@@ -158,29 +170,32 @@
     text-align: center;
 }
 
-.trip-date {
+.list-group-item {
     text-align: center;
     margin-top: 0.5rem;
 }
 
-#itin-details {
+#itin-details, #sidebar {
     position: relative;
-    height: 600px;
+    height: 100vh;
     overflow-y: scroll;
 }
 
-.place-card {
-    border-radius: .4rem;
-    border: 1px grey solid;
-    height: 6rem;
-    margin-top: .4rem;
+#itin-details::-webkit-scrollbar {
+    display:none;
 }
 
-.place-img {
-    object-fit: cover;
-    height: 6rem;
-    width: 6rem;
-    border-radius: 0.4rem;
+#sidebar::-webkit-scrollbar {
+    display:none;
+}
+
+#trip-destination {
+    text-transform: capitalize;
+    display: inline;
+}
+
+.place-card {
+    padding: 2%;
 }
 
 /* Add New Places */

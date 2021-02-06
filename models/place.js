@@ -8,7 +8,10 @@ const placeSchema = new Schema({ // Google Places API data fields listed in comm
     types: Array, // types
     photos: String, // photo_reference
     googleUrl: String, // Google Url
-    latLng: Array, // geometry.location.lat, geometry.location.lng
+    latLng: {
+        type: Map,
+        of: String
+    }, // geometry.location.lat, geometry.location.lng
   }, {
     timestamps: true
   });

@@ -1,34 +1,52 @@
 <%- include("../other/header") %>
-<%- include("../other/trip-nav") %>
+<%- include("../other/user-nav") %>
 <%- include("../other/functions") %>
 
 <div class="row" id="trip-show">
 
-    <div class="col-1" id="sidebar">
-        <i class="bi bi-geo-fill sidebar-ico"></i>
-        <br>
-        <i class="bi bi-calendar2-plus sidebar-ico"></i>
-        <br>
-        <div class="list-group" id="sidebar-dates">
+    <div class="col-1 list-group" id="sidebar">
+            <a class="list-group-item list-group-item-action" href="#list-item-1">
+                <i class="bi bi-geo-fill sidebar-ico"></i>
+            </a>
+            <a class="list-group-item list-group-item-action" href="#list-item-2">
+                <i class="bi bi-calendar2-plus sidebar-ico"></i>
+            </a>
+
         <% for (let i = 0; i < dateRange.length; i++) { %>
             <% currDate = dateRange[i] %>
             <div class="trip-date">
-                <a class="list-group-item list-group-item-action" href="#list-item-<%= i+1 %>"><span> <%= formatDate(currDate).month %></span><br><span> <%= formatDate(currDate).day %></span></a>
+                <a class="list-group-item list-group-item-action" href="#list-item-<%= i+3 %>"><span> <%= formatDate(currDate).month %></span><br><span> <%= formatDate(currDate).day %></span></a>
             </div>
         <% } %>
-        </div>
     </div>
 
-    <div class="col-6 scrollspy-example" data-spy="scroll" data-target="#sidebar-dates" data-offset="0" class="" id="itin-details">
+    <div class="col-6 scrollspy-example" data-spy="scroll" data-target="#sidebar" data-offset="0" class="" id="itin-details">
 
-            <h4 id="list-item-1">Item 1</h4>
-            <p>Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
-            <h4 id="list-item-2">Item 2</h4>
-            <p>Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
-            <h4 id="list-item-3">Item 3</h4>
-            <p>Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
-            <h4 id="list-item-4">Item 4</h4>
-            <p>Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
+        <h4 id="list-item-1">Your Trip to <div id="trip-destination"><%= trip.destination %></div></h4>
+        <p id="list-item-2">Notes: Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, distinctio nesciunt id voluptate dolore fuga dolorum illum nam officiis, ipsum quis debitis molestias ad blanditiis voluptates harum inventore aliquid facere</p>
+
+        <% for (let i = 0; i < dateRange.length; i++) { %>
+            <% currDate = dateRange[i] %>
+            <div class="<%= formatDateISO(currDate) %>">
+                <h4 id="list-item-<%= i+3 %>"><%= formatDate(currDate).month %> <%= formatDate(currDate).day %></h4>
+                <div class="row place-card" id="xxxxxxx">
+                    <div class="col-1">
+                        <i class="bi bi-geo-alt-fill place-icon"></i>
+                    </div>
+                    <div class="col-11">
+                        <a href="xxxxxx" target="_blank" class="place-link"><div class="place-name">TEST NAME</div></a>
+    
+                        <div class="place-types">
+                            <span class="badge badge-pill badge-primary">attraction</span>&nbsp;
+                        </div>
+    
+                        <div class="place-address">Test address</div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+                <% } %>
+
     </div>
 
     <div class="col-5" id="places-bar">
@@ -41,23 +59,26 @@
             </div>
         </div>
 
-        <div class="place-card d-flex align-items-center">
-            <div class="row">
-                <div class="col-3">
-                    <img class="place-img" src="/img/pexels-leah-kelley-3935702.jpg" alt="">
+        <% unplannedStops.forEach( function (stop) { %>
+            <div class="row place-card" id="<%= stop.stopPlace._id %>">
+                <div class="col-1">
+                    <i class="bi bi-geo-alt-fill place-icon"></i>
                 </div>
-                <div class="offset-1 col-8 d-flex align-items-center">
-                    <div>
+                <div class="col-11">
+                    <a href="<%= stop.stopPlace.googleUrl %>" target="_blank" class="place-link"><div class="place-name"><%= stop.stopPlace.name %></div></a>
 
-                        <h5>Placeholder Name</h5>
-                        <div><span class="badge badge-pill badge-primary">Primary</span>&nbsp;<span class="badge badge-pill badge-primary">Primary</span>&nbsp;<span class="badge badge-pill badge-primary">Primary</span></div>
+                    <div class="place-types">
+                    <% stop.stopPlace.types.forEach(function(type) { %>
+                        <span class="badge badge-pill badge-primary"><%= type %></span>&nbsp;
+                        <% }) %>
                     </div>
+
+                    <div class="place-address"><%= stop.stopPlace.address %></div>
                 </div>
             </div>
-
-        </div>
-        
+        <% }) %>
     </div>
+
     
 </div>
 
