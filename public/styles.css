@@ -93,6 +93,10 @@
     border-color: var(--primaryColor2);
 }
 
+.landing-btn {
+    margin-right: 1.5rem;
+}
+
 /* Trips Index */ 
 
 #trip-cards {

@@ -46,9 +46,12 @@ function newTrip(req, res) {
 
 function addTrip(req, res) {
 
+    startDate = new Date(req.body.daterange.slice(0,10) + 'Z')
+    endDate = new Date(req.body.daterange.slice(-10) + 'Z')
+
     const newTripInfo = {
-        startDate: req.body.startDate,
-        endDate: req.body.endDate,
+        startDate: startDate,
+        endDate: endDate,
         destination: req.body.destination,
         createdBy: req.user.id,
         stops: [],
@@ -60,7 +63,6 @@ function addTrip(req, res) {
         getLatLng(newTrip)
         res.redirect(`/trips/${newTrip._id}`)
     })
-
 
 }
 
