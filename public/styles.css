@@ -173,7 +173,7 @@
     border-radius: .4rem;
     border: 1px grey solid;
     height: 6rem;
-    margin-top: 1rem;
+    margin-top: .4rem;
 }
 
 .place-img {
@@ -181,4 +181,45 @@
     height: 6rem;
     width: 6rem;
     border-radius: 0.4rem;
+}
+
+/* Add New Places */
+
+.place-search-box {
+    padding: 2%;
+}
+
+.place-link {
+    color: black;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.place-link:hover {
+    color: var(--primaryColor);
+    text-decoration: none;
+}
+
+.place-icon {
+    font-size: 2rem;
+    text-align: right;
+    color: var(--primaryColor);
+}
+
+.place-types {
+    margin-bottom: 0.2rem;
+}
+
+#trip-title {
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.checkbox {
+    font-size: 2rem;
+    padding-right: 1rem;
+}
+
+span .badge {
+    text-transform: capitalize;
 }

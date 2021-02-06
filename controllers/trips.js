@@ -12,6 +12,7 @@ module.exports = {
     newTrip,
     addTrip,
     showTrip,
+    showTripLatLng,
     updateTrip,
     delTrip,
 }
@@ -88,6 +89,13 @@ function showTrip(req, res) {
 
         res.render('trips/show', context)
     } )
+}
+
+function showTripLatLng(req, res) {
+    Trips.findById(req.params.id, (err, foundTrip) => {
+        if (err) return console.log(err)
+        res.send( {tripLat: foundTrip.latLng[0], tripLng: foundTrip.latLng[1]} )
+    })
 }
 
 function updateTrip(req, res) {

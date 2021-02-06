@@ -8,7 +8,7 @@ formatDate = function(DateObj) {
 
     const dateStr = DateObj.toLocaleDateString('en-US', options)
     const formattedDate = {
-        month: dateStr.slice(0,3).toUpperCase(),
+        month: dateStr.slice(0,3),
         day: dateStr.slice(-2)
     }
 

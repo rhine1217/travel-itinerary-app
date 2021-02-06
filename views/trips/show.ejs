@@ -32,7 +32,14 @@
     </div>
 
     <div class="col-5" id="places-bar">
-        <h4>Saved Places</h4>
+        <div class="row">
+            <div class="col-6">
+                <h4>Saved Places</h4>
+            </div>
+            <div class="col-6 d-flex align-items-center justify-content-end">
+                <a href="/places/new/<%= trip._id %>">Add New Places</a>
+            </div>
+        </div>
 
         <div class="place-card d-flex align-items-center">
             <div class="row">
@@ -43,7 +50,7 @@
                     <div>
 
                         <h5>Placeholder Name</h5>
-                        <p><span class="badge badge-pill badge-primary">Primary</span>&nbsp;<span class="badge badge-pill badge-primary">Primary</span>&nbsp;<span class="badge badge-pill badge-primary">Primary</span></p>
+                        <div><span class="badge badge-pill badge-primary">Primary</span>&nbsp;<span class="badge badge-pill badge-primary">Primary</span>&nbsp;<span class="badge badge-pill badge-primary">Primary</span></div>
                     </div>
                 </div>
             </div>
@@ -53,7 +60,7 @@
     </div>
     
 </div>
-<a href="/places/new/<%= trip._id %>">Add a Place</a>
+
 
 <form action="/trips/<%= trip._id %>?_method=DELETE" method="POST">
     <button class="btn btn-danger">Delete the Trip</button>

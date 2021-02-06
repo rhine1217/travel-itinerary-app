@@ -10,6 +10,8 @@ router.get('/:id', isLoggedIn, tripCtrl.showTrip) // show the trip details (with
 router.post('/:id', isLoggedIn, tripCtrl.updateTrip) // update the trip details in the database 
 router.delete('/:id', isLoggedIn, tripCtrl.delTrip) // delete the trip in the database
 
+router.get('/getlatlng/:id', isLoggedIn, tripCtrl.showTripLatLng) // return the trip's geocode
+
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();
     res.redirect('/auth/google');

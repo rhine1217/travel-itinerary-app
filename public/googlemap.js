@@ -8,7 +8,6 @@ function mapAutocomplete() {
     })
   }
 function initAutocomplete(tripLat, tripLng) {
-  console.log(tripLat);
     const map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: tripLat, lng: tripLng},
       zoom: 13,

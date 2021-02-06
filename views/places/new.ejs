@@ -1,10 +1,65 @@
-<%- include("../other/header-place") %>
+<%- include("../other/header") %>
 <%- include("../other/user-nav") %>
-
-<input id="pac-input" class="controls" type="text" placeholder="Search Box"/>
-
-<div id="map"></div>
+<%- include("../other/functions") %>
 
 
+<div class="place-search-box">
+    <div class="row">
+        <div class="col-4">
+            <h5>Add places for your trip to...</h5>
+            <h4 id="trip-title"><%= trip.destination %>
+                (<%= formatDate(trip.startDate).month %> <%= formatDate(trip.startDate).day %> - <%= formatDate(trip.endDate).month %> <%= formatDate(trip.endDate).day %>)
+            </h4>
+        </div>
+        <div class="col-8">
+            <button class="btn btn-primary">Select All</button>
+            <button class="btn btn-primary">Save Selections</button>
+        </div>
+    </div>
+<form>
+
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <input type="text" class="form-control" name="keyword" placeholder="Keyword" required>
+            </div>
+            <div class="form-group">
+                <select class="custom-select" name="placeType" id="placeTypeSelect">
+                    <option value="all" selected>All types</option>
+                    <option value="art_gallery">Art Galleries</option>
+                    <option value="bar">Bars</option>
+                    <option value="cafe">Cafes</option>
+                    <option value="museum">Museums</option>
+                    <option value="restaurant">Restaurants</option>
+                    <option value="store">Shopping</option>
+                    <option value="tourist_attraction">Tourist Attractions</option>
+                </select>
+            </div>
+            <button type="submit" id="place-search" class="btn btn-primary">Search</button>
+            <button id="clear-results" class="btn btn-secondary">Clear Results</button>
+
+        </div>
+        <div class="col-8" id="search-results">
+            <div class="row place-search-result" id="ChIJDbQMBIdZwokRVS4L8B8V5SA">
+                <div class="col-2 d-flex justify-content-end">
+                    <div class="checkbox place-not-checked">
+                        <i class="bi bi-circle"></i>
+                    </div>
+                    <i class="bi bi-geo-alt-fill place-icon"></i>
+                </div>
+                <div class="col-6">
+                    <a href="/" class="place-link"><div>Attaboy</div></a>
+                    <div class="place-types"><span class="badge badge-pill badge-primary">Primary</span>&nbsp;<span class="badge badge-pill badge-primary">Primary</span>&nbsp;<span class="badge badge-pill badge-primary">Primary</span></div>
+                    <div>134 Eldridge St, New York, NY 10002, United States</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</form>
+
+</div>
 <%- include("../other/footer") %>
 
