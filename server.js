@@ -1,5 +1,4 @@
 const express = require('express');
-const port = 3000;
 const session = require('express-session');
 const passport = require('passport');
 const MongoStore = require('connect-mongo')(session)
@@ -48,6 +47,6 @@ app.use('/', indexRoutes);
 app.use('/trips', tripRoutes);
 app.use('/places', placeRoutes);
 
-app.listen(port, () => {
-  console.log(`Express is listening on port:${port}`);
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Express is listening`);
 });
