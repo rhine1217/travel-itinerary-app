@@ -168,3 +168,17 @@
     height: 600px;
     overflow-y: scroll;
 }
+
+.place-card {
+    border-radius: .4rem;
+    border: 1px grey solid;
+    height: 6rem;
+    margin-top: 1rem;
+}
+
+.place-img {
+    object-fit: cover;
+    height: 6rem;
+    width: 6rem;
+    border-radius: 0.4rem;
+}

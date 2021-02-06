@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div class="col-7 scrollspy-example" data-spy="scroll" data-target="#sidebar-dates" data-offset="0" class="" id="itin-details">
+    <div class="col-6 scrollspy-example" data-spy="scroll" data-target="#sidebar-dates" data-offset="0" class="" id="itin-details">
 
             <h4 id="list-item-1">Item 1</h4>
             <p>Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
@@ -31,13 +31,29 @@
             <p>Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
     </div>
 
-    <div class="col-4" id="places-bar">
-        <a href="places/add">Add a Place</a>
-    </div>
-    <p><%= trip.latLng[0] %></p>
-<p><%= trip.latLng[1] %></p>
+    <div class="col-5" id="places-bar">
+        <h4>Saved Places</h4>
 
+        <div class="place-card d-flex align-items-center">
+            <div class="row">
+                <div class="col-3">
+                    <img class="place-img" src="/img/pexels-leah-kelley-3935702.jpg" alt="">
+                </div>
+                <div class="offset-1 col-8 d-flex align-items-center">
+                    <div>
+
+                        <h5>Placeholder Name</h5>
+                        <p><span class="badge badge-pill badge-primary">Primary</span>&nbsp;<span class="badge badge-pill badge-primary">Primary</span>&nbsp;<span class="badge badge-pill badge-primary">Primary</span></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+    
 </div>
+<a href="/places/new/<%= trip._id %>">Add a Place</a>
 
 <form action="/trips/<%= trip._id %>?_method=DELETE" method="POST">
     <button class="btn btn-danger">Delete the Trip</button>

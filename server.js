@@ -42,9 +42,11 @@ app.use(passport.session());
 
 const indexRoutes = require('./routes/index');
 const tripRoutes = require('./routes/trip');
+const placeRoutes = require('./routes/places');
 
 app.use('/', indexRoutes);
 app.use('/trips', tripRoutes);
+app.use('/places', placeRoutes);
 
 app.listen(port, () => {
   console.log(`Express is listening on port:${port}`);
